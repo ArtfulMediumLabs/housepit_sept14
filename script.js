@@ -250,7 +250,6 @@ function formatDuration(duration) {
 }
 
 downloadButton.onclick = function () {
-    console.log("test");
     render();
 }
 
