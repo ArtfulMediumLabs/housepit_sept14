@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>Viva Acid</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:image" content="thumbnail.jpg" />
+    <link type="text/css" rel="stylesheet" href="style.css" />
+	<script src="Tone.js"></script>
+    <script src="bufferToWav.js"></script>
+    <script src="axios.min.js"></script>
+    <script src="gsap.min.js""></script>
+    <script src="Draggable.min.js"></script>
+</head>
+<body>
+
+<!-- <section class="marquee">
+    <div class="marquee__inner" aria-hidden="true" ref="inner">
+      <div class="marquee__part">
+        SECRET STUDIO
+      </div>
+      <div class="marquee__part">
+        "LET ME HIT IT" 
+      </div>
+      <div class="marquee__part">
+        SECRET STUDIO
+      </div>
+      <div class="marquee__part">
+        "LET ME HIT IT" 
+      </div>
+      <div class="marquee__part">
+        SECRET STUDIO
+      </div>
+      <div class="marquee__part">
+        "LET ME HIT IT" 
+      </div>
+      <div class="marquee__part">
+        SECRET STUDIO
+      </div>
+      <div class="marquee__part">
+        "LET ME HIT IT" 
+      </div>
+      <div class="marquee__part">
+        SECRET STUDIO
+      </div>
+      <div class="marquee__part">
+        "LET ME HIT IT" 
+      </div>
+      <div class="marquee__part">
+        SECRET STUDIO
+      </div>
+      <div class="marquee__part">
+        "LET ME HIT IT" 
+      </div>
+      <div class="marquee__part">
+        SECRET STUDIO
+      </div>
+      <div class="marquee__part">
+        "LET ME HIT IT" 
+      </div>
+    </div>
+</section> -->
+
+<div id="bg_circle" style=""></div>
+<div id="bg_circle2" style=""></div>   
+<div id="stageBlock"></div>
+<div id="stageBlock2"></div>
+<div id="stageBlock3"></div>
+<div id="stageBlock4"></div>
+<div id="stageBlock5"></div>
+<div id="stageBlock6"></div>
+
+<div id="blobDiv" style="position:absolute; z-index: -1; margin-left:50vw; margin-top:20vh; width:40vw; height:40vh" >
+    <svg class="bloba" width="100%" height="100%" viewBox="0 0 399 444" fill="none" xmlns="http://www.w3.org/2000/svg">    
+        <g style="mix-blend-mode:multiply">
+        <path class="blobAPath" d="M99.5261 183.435C27.0042 191.379 -25.6985 261.233 13.1541 322.983C14.0737 324.444 15.0043 325.897 15.9459 327.341C40.9528 365.692 72.8742 396.543 108.595 416.885C144.315 437.226 182.615 446.362 219.755 443.402C256.895 440.442 291.608 425.486 320.504 399.994C349.401 374.502 371.495 339.346 384.629 297.955C397.764 256.564 401.491 210.354 395.446 163.834C389.401 117.313 373.791 72.0724 350.14 32.5263C315.791 -24.9057 239.69 -0.87502 218.061 62.4531L205.823 98.2846C189.908 144.884 148.476 178.074 99.5261 183.435Z" fill="#F09135"/>
+        </g>
+    </svg>
+</div>
+
+<div id="content">
+    <div id="wrapper">
+        <!-- <button id="close"></button> -->
+        <div id="wrapper_bg"></div>
+        <div id="header">
+            <a id="info_cta" class="info_cta" href="http://edittrax.nft" target="_blank"></a> 
+        </div>
+
+        <div id="master_controls">
+            <button id="play-toggle" class="play" disabled></button>
+            <div id="status">Loading...</div>
+            <div id="totalDuration"></div>
+            <div id="progress_cont">
+                <div id="progress"></div>
+            </div>
+            <div id="loop"></div>
+            <input id="trackRepeat" type="number" value="1" min="1" step="1">
+            <button id="download" disabled></button> 
+            <!-- <a href="" id="download-link"></a> -->
+        </div>
+        
+        <div id="presets">
+            <div id="labels">ORIG</div>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+            <div id="labels">DUB</div>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+            <div id="labels">DROP</div>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+            <div id="labels">15 SEC</div>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+            <div id="labels">RESET</div>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+        </div>
+
+        <div id="boxes_cont">
+            <div class="boxes">
+            </div>
+        </div>
+        <!-- <div id="label_custom">DOWNLOAD</div> -->
+
+                <!-- <a href="https://edittrax.com" target="_blank" rel="noopener noreferrer"> -->
+                    <div id="footer"></div>
+                    <!-- </a> -->
+       
+
+
+
+
+
+
+
+
+        
+
+
+        <div class="viewport"></div>
+
+        <?xml version="1.0" encoding="iso-8859-1"?>
+        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+        <svg id="click_icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 202.932 202.932" style="enable-background:new 0 0 202.932 202.932;" xml:space="preserve">
+        <path d="M147.654,53.795c-5.921,0-11.324,2.26-15.392,5.961c-4.068-3.701-9.471-5.961-15.391-5.961
+          c-5.926,0-11.334,2.261-15.405,5.963c-4.068-3.702-9.471-5.963-15.392-5.963c-2.772,0-5.43,0.495-7.891,1.401V22.902
+          C78.184,10.274,67.914,0,55.291,0c-12.63,0-22.906,10.274-22.906,22.902v110.957c0,38.087,30.988,69.072,69.078,69.072
+          c38.093,0,69.084-30.985,69.084-69.072V76.688C170.547,64.064,160.277,53.795,147.654,53.795z M155.547,133.859
+          c0,29.815-24.262,54.072-54.084,54.072c-29.819,0-54.078-24.257-54.078-54.072V22.902c0-4.357,3.547-7.902,7.906-7.902
+          c4.352,0,7.893,3.545,7.893,7.902v53.785v16.451c0,4.142,3.358,7.5,7.5,7.5c4.142,0,7.5-3.358,7.5-7.5V76.688
+          c0-4.352,3.539-7.893,7.891-7.893c4.35,0,7.889,3.541,7.889,7.893v16.451c0,4.142,3.358,7.5,7.5,7.5c4.142,0,7.5-3.358,7.5-7.5
+          V76.688c0-4.352,3.548-7.893,7.908-7.893c4.351,0,7.891,3.541,7.891,7.893v16.451c0,4.142,3.358,7.5,7.5,7.5
+          c4.142,0,7.5-3.358,7.5-7.5V76.688c0-4.352,3.54-7.893,7.893-7.893c4.352,0,7.893,3.541,7.893,7.893V133.859z"/>
+        <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+
+    </div>
+</div>
+
+    
+
+
+    <script src="track.js"></script>
+    <script src="scroll.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
