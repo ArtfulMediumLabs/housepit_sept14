@@ -39,4 +39,11 @@ const parts = [
     // { file: "8.wav", length: 8, loop: 1 }
 ];
 
+const presets = [];
+presets.push([1,1,1,1,1]);
+presets.push([1,2,3,4,5]);
+presets.push([2,2,2,2,2]);
+presets.push([1,0,0,0,1]);
+presets.push([0,0,0,0,0]);
+
 const downloadName = "Bai-ee_(Thats_My_Sista)_Unreleased_NFT.wav"

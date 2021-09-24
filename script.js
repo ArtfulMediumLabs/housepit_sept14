@@ -10,7 +10,16 @@ let downloadButton = document.querySelector("#download");
 let purchaseElement = document.querySelector("#purchase");
 let status = document.querySelector("#status");
 
+let presetElements = document.querySelectorAll("input[type=radio][name=preset]");
 let elements = document.querySelectorAll(".box input[type=number]");
+
+for (var i = 0, presetElement; presetElement = presetElements[i]; i++) {
+    presetElement.addEventListener('change', function() {
+        Tone.Transport.stop();
+        loadPreset(this.value);
+        updatePlayClass();
+    });
+}
 
 for (var i = 0, element; element = elements[i]; i++) {
     element.addEventListener("change", function (event) {
@@ -33,11 +42,10 @@ var trackRepeat = trackRepeatElement.value;
 
 trackRepeatElement.addEventListener("change", function(event) {
     Tone.Transport.stop();
-
     trackRepeat = trackRepeatElement.value;
-
     updateDurations();
     schedulePlayers();
+    updatePlayClass();
 })
 
 const player = new Tone.Player().toDestination();
@@ -53,9 +61,7 @@ Tone.loaded().then(function () {
     status.innerHTML = "EDIT LENGTH"
     playToggle.disabled = false;
     enableElements();
-    updateParts();
-    updateDurations();
-    schedulePlayers();
+    loadPreset(0);
 });
 
 function updateParts() {
@@ -63,6 +69,27 @@ function updateParts() {
         parts[i].loop = element.value;
     }
 }
+
+function loadPreset(index) {
+    const preset = presets[index];
+    for (var i = 0; i < preset.length ; i++) {
+        parts[i].loop = preset[i];
+    }
+    presetLoaded();
+}
+
+function presetLoaded() {
+    updateElements();
+    updateDurations();
+    schedulePlayers();
+}
+
+function updateElements() {
+    for (var i = 0, element; element = elements[i]; i++) {
+        element.value = parts[i].loop;
+    }
+}
+
 
 function render() {
     status.innerHTML = "Rendering"

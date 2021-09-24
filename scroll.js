@@ -247,36 +247,6 @@ var tl = gsap.timeline();
 tl.to("#bg_circle", {duration: 500,scale:3, x:"100vw", y:"100vh", delay:1, yoyo:true, repeat:-1},0);
 tl.to("#bg_circle2", {duration: 500, scale:3, x:-300, y:-300, yoyo:true, repeat:-1},0);
 
-
-
-
-
-function reset() {
-
-  console.log("test");
-
-
-
-  for (let i = 1; i <= numBoxes; i++) {
-
-    const inputField = document.getElementById(i);
-
-    console.log("test");
-
-    // var innerText = document.getElementById(i).innerText;
-    // innerText.value = 0;
-
-
-  // clearing the input field
-  inputField.value = " ";
-  inputField.value = 0;
-
-     
-  }
-
-
-}
-
 function help(){
   
   gsap.to(".box", {duration:0.5,autoAlpha:0})
@@ -284,11 +254,6 @@ function help(){
 
 
 }
-
-
-document.getElementById("presets").addEventListener("click", reset);
-
-
 
 // document.getElementById("info").addEventListener("mouseover", help);
 
