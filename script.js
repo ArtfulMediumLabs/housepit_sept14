@@ -7,6 +7,7 @@ var isOwned = false;
 
 let playToggle = document.querySelector("#play-toggle");
 let downloadButton = document.querySelector("#download");
+let purchaseElement = document.querySelector("#purchase");
 let status = document.querySelector("#status");
 
 let elements = document.querySelectorAll(".box input[type=number]");
@@ -267,7 +268,9 @@ function validateToken(viewer, objkt){
     .then(result => {
         let count = result.data ?? [];
         isOwned = count.length > 0;
-        downloadButton.disabled = !isOwned;
+        // downloadButton.disabled = !isOwned;
+        downloadButton.style.visibility = isOwned ? 'visible' : 'hidden';
+        purchaseElement.style.visibility = !isOwned ? 'visible' : 'hidden';
     })
     .catch(err => console.log('error', err));
 }

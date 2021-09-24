@@ -143,6 +143,10 @@ body {
   right: 20px; */
 }
 
+#purchase {
+  visibility: visible; 
+}
+
 #play-toggle, #download {
   border: 0;
   position: relative;
@@ -172,7 +176,7 @@ body {
 
 #download {
   background-image: url(download_img.svg);
- 
+  visibility: hidden;
 }
 
 
