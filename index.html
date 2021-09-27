@@ -14,63 +14,17 @@
 </head>
 <body>
 
-<!-- <section class="marquee">
-    <div class="marquee__inner" aria-hidden="true" ref="inner">
-      <div class="marquee__part">
-        SECRET STUDIO
-      </div>
-      <div class="marquee__part">
-        "LET ME HIT IT" 
-      </div>
-      <div class="marquee__part">
-        SECRET STUDIO
-      </div>
-      <div class="marquee__part">
-        "LET ME HIT IT" 
-      </div>
-      <div class="marquee__part">
-        SECRET STUDIO
-      </div>
-      <div class="marquee__part">
-        "LET ME HIT IT" 
-      </div>
-      <div class="marquee__part">
-        SECRET STUDIO
-      </div>
-      <div class="marquee__part">
-        "LET ME HIT IT" 
-      </div>
-      <div class="marquee__part">
-        SECRET STUDIO
-      </div>
-      <div class="marquee__part">
-        "LET ME HIT IT" 
-      </div>
-      <div class="marquee__part">
-        SECRET STUDIO
-      </div>
-      <div class="marquee__part">
-        "LET ME HIT IT" 
-      </div>
-      <div class="marquee__part">
-        SECRET STUDIO
-      </div>
-      <div class="marquee__part">
-        "LET ME HIT IT" 
-      </div>
-    </div>
-</section> -->
-
 <div id="bg_circle" style=""></div>
 <div id="bg_circle2" style=""></div>   
 <div id="stageBlock"></div>
-<div id="stageBlock2"></div>
+<div id="circle"></div>
+<!-- <div id="stageBlock2"></div>
 <div id="stageBlock3"></div>
 <div id="stageBlock4"></div>
 <div id="stageBlock5"></div>
-<div id="stageBlock6"></div>
+<div id="stageBlock6"></div> -->
 
-<div id="blobDiv" style="position:absolute; z-index: -1; margin-left:50vw; margin-top:20vh; width:40vw; height:40vh" >
+<div id="blobDiv" style="position:absolute; z-index: -1; margin-left:400px; margin-top:20vh; width:40vw; height:40vh" >
     <svg class="bloba" width="100%" height="100%" viewBox="0 0 399 444" fill="none" xmlns="http://www.w3.org/2000/svg">    
         <g style="mix-blend-mode:multiply">
         <path class="blobAPath" d="M99.5261 183.435C27.0042 191.379 -25.6985 261.233 13.1541 322.983C14.0737 324.444 15.0043 325.897 15.9459 327.341C40.9528 365.692 72.8742 396.543 108.595 416.885C144.315 437.226 182.615 446.362 219.755 443.402C256.895 440.442 291.608 425.486 320.504 399.994C349.401 374.502 371.495 339.346 384.629 297.955C397.764 256.564 401.491 210.354 395.446 163.834C389.401 117.313 373.791 72.0724 350.14 32.5263C315.791 -24.9057 239.69 -0.87502 218.061 62.4531L205.823 98.2846C189.908 144.884 148.476 178.074 99.5261 183.435Z" fill="#F09135"/>
@@ -78,15 +32,46 @@
     </svg>
 </div>
 
-<div id="content">
-    <div id="wrapper">
-        <!-- <button id="close"></button> -->
-        <div id="wrapper_bg"></div>
-        <div id="header">
-            <a id="info_cta" class="info_cta" href="http://edittrax.nft" target="_blank"></a> 
-        </div>
 
-        <div id="master_controls">
+<div id="content">
+
+  <button id="flipMe" onclick="toggle()"></button>
+
+  <div id="wrapper_cont">
+   
+    <div id="wrapper_back"></div>
+    <div id="wrapper">
+     
+
+       
+        <div id="vivaLogo"></div>
+          <!-- <button id="close"></button> -->
+          <div id="wrapper_bg"></div>
+          <div id="header">
+              <a id="info_cta" class="info_cta" href="http://edittrax.nft" target="_blank"></a> 
+          </div>
+          
+          <div id="presets">
+            <div id="pre">OPEN SOURCE EDITING<br>
+            </div>
+            <div id="labels">ORIG:</div>
+              <input type="radio" id="html" name="preset" value="0" checked="checked">
+              <div id="labels">DUB:</div>
+              <input type="radio" id="html" name="preset" value="1">
+              <div id="labels">DROPS:</div>
+              <input type="radio" id="html" name="preset" value="2">
+              <div id="labels">INSTA:</div>
+              <input type="radio" id="html" name="preset" value="3">
+              <div id="labels">RESET:</div>
+              <input type="radio" id="html" name="preset" value="4">
+          </div>
+
+          <div id="boxes_cont">
+              <div class="boxes">
+              </div>
+          </div>
+
+          <div id="master_controls">
             <button id="play-toggle" class="play" disabled></button>
             <div id="status">Loading...</div>
             <div id="totalDuration"></div>
@@ -95,34 +80,62 @@
             </div>
             <div id="loop"></div>
             <input id="trackRepeat" type="number" value="1" min="1" step="1">
-            <div id="purchase">BUY IT</div>
-            <button id="download"></button> 
-            <a href="" id="download-link"></a>
+            <div id="purchase"></div>
+            <!-- <button id="download"></button> 
+            <a href="" id="download-link"></a> -->
+
         </div>
+          <!-- <div id="label_custom">DOWNLOAD</div> -->
+
+                  <!-- <a href="https://edittrax.com" target="_blank" rel="noopener noreferrer"> -->
+                      <div id="footer">
+                        
+                        
+                        <!-- Powered By: EDITTRAX.NFT | OPEN SOURCE EDITOR -->
+
+
+
+                    
+
+
+            <section class="marquee">
+
+      <div class="marquee__inner" aria-hidden="true" ref="inner">
+        <div class="marquee__part">
+          POWERED BY EDITTRAX.NFT
+        </div>
+        <div class="marquee__part">
+          POWERED BY EDITTRAX.NFT
+        </div>
+        <div class="marquee__part">
+          POWERED BY EDITTRAX.NFT
+        </div>
+        <div class="marquee__part">
+          POWERED BY EDITTRAX.NFT
+        </div>
+        <div class="marquee__part">
+          POWERED BY EDITTRAX.NFT
+        </div>
+        <div class="marquee__part">
+          POWERED BY EDITTRAX.NFT
+        </div>
+        <div class="marquee__part">
+          POWERED BY EDITTRAX.NFT
+        </div>
+        <div class="marquee__part">
+          POWERED BY EDITTRAX.NFT
+        </div>
+      </div>
+  </section>
+
+
+
+
+
+
+                      </div>
+                      <!-- </a> -->
         
-        <div id="presets">
-            <div id="labels">ORIG</div>
-            <input type="radio" id="html" name="preset" value="0" checked="checked">
-            <div id="labels">DUB</div>
-            <input type="radio" id="html" name="preset" value="1">
-            <div id="labels">DROP</div>
-            <input type="radio" id="html" name="preset" value="2">
-            <div id="labels">15 SEC</div>
-            <input type="radio" id="html" name="preset" value="3">
-            <div id="labels">RESET</div>
-            <input type="radio" id="html" name="preset" value="4">
-        </div>
-
-        <div id="boxes_cont">
-            <div class="boxes">
-            </div>
-        </div>
-        <!-- <div id="label_custom">DOWNLOAD</div> -->
-
-                <!-- <a href="https://edittrax.com" target="_blank" rel="noopener noreferrer"> -->
-                    <div id="footer"></div>
-                    <!-- </a> -->
-       
 
 
 
@@ -131,27 +144,19 @@
 
 
 
-        
+          
 
 
-        <div class="viewport"></div>
+          <div class="viewport"></div>
 
-        <?xml version="1.0" encoding="iso-8859-1"?>
-        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-        <svg id="click_icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-          viewBox="0 0 202.932 202.932" style="enable-background:new 0 0 202.932 202.932;" xml:space="preserve">
-        <path d="M147.654,53.795c-5.921,0-11.324,2.26-15.392,5.961c-4.068-3.701-9.471-5.961-15.391-5.961
-          c-5.926,0-11.334,2.261-15.405,5.963c-4.068-3.702-9.471-5.963-15.392-5.963c-2.772,0-5.43,0.495-7.891,1.401V22.902
-          C78.184,10.274,67.914,0,55.291,0c-12.63,0-22.906,10.274-22.906,22.902v110.957c0,38.087,30.988,69.072,69.078,69.072
-          c38.093,0,69.084-30.985,69.084-69.072V76.688C170.547,64.064,160.277,53.795,147.654,53.795z M155.547,133.859
-          c0,29.815-24.262,54.072-54.084,54.072c-29.819,0-54.078-24.257-54.078-54.072V22.902c0-4.357,3.547-7.902,7.906-7.902
-          c4.352,0,7.893,3.545,7.893,7.902v53.785v16.451c0,4.142,3.358,7.5,7.5,7.5c4.142,0,7.5-3.358,7.5-7.5V76.688
-          c0-4.352,3.539-7.893,7.891-7.893c4.35,0,7.889,3.541,7.889,7.893v16.451c0,4.142,3.358,7.5,7.5,7.5c4.142,0,7.5-3.358,7.5-7.5
-          V76.688c0-4.352,3.548-7.893,7.908-7.893c4.351,0,7.891,3.541,7.891,7.893v16.451c0,4.142,3.358,7.5,7.5,7.5
-          c4.142,0,7.5-3.358,7.5-7.5V76.688c0-4.352,3.54-7.893,7.893-7.893c4.352,0,7.893,3.541,7.893,7.893V133.859z"/>
-        <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
-
-    </div>
+          <svg id="click_icon" width="24" height="24" viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L12.6247 1.21913L12 0.719375L11.3753 1.21913L12 2ZM11 11C11 11.5523 11.4477 12 12 12C12.5523 12 13 11.5523 13 11L11 11ZM17.6247 5.21913L12.6247 1.21913L11.3753 2.78087L16.3753 6.78087L17.6247 5.21913ZM11.3753 1.21913L6.3753 5.21913L7.62469 6.78087L12.6247 2.78087L11.3753 1.21913ZM11 2L11 11L13 11L13 2L11 2Z" fill="black"/>
+            <path d="M3.44293 13.3424L4.42933 13.5068L3.44293 13.3424ZM3.25232 20.9391L2.4893 21.5855L3.25232 20.9391ZM20.8356 15.0136L21.822 14.8492L20.8356 15.0136ZM20.7477 20.9391L21.5107 21.5855L20.7477 20.9391ZM19.5707 13.5068L19.8492 15.178L21.822 14.8492L21.5435 13.178L19.5707 13.5068ZM14.9172 21L9.08276 21L9.08276 23L14.9172 23L14.9172 21ZM4.15079 15.178L4.42933 13.5068L2.45654 13.178L2.178 14.8492L4.15079 15.178ZM15.8681 11L16.6115 11L16.6115 9L15.8681 9L15.8681 11ZM7.38851 11L7.93403 11L7.93403 9L7.38851 9L7.38851 11ZM4.42933 13.5068C4.56657 12.6833 4.65609 12.1573 4.77061 11.7726C4.87716 11.4147 4.97236 11.301 5.04788 11.237L3.75513 9.71094C3.27116 10.1209 3.0201 10.6432 2.85375 11.202C2.69537 11.7339 2.58534 12.4052 2.45654 13.178L4.42933 13.5068ZM7.38851 9C6.60502 9 5.92484 8.99818 5.37405 9.06695C4.79555 9.13917 4.2391 9.30096 3.75513 9.71094L5.04788 11.237C5.1234 11.173 5.25128 11.0978 5.62183 11.0515C6.02008 11.0018 6.55366 11 7.38851 11L7.38851 9ZM9.08276 21C7.40829 21 6.25971 20.9976 5.41214 20.8773C4.59225 20.7609 4.23891 20.5567 4.01534 20.2927L2.4893 21.5855C3.16442 22.3825 4.08239 22.7086 5.13109 22.8575C6.15211 23.0024 7.46941 23 9.08276 23L9.08276 21ZM2.178 14.8492C1.91277 16.4406 1.69385 17.7396 1.66895 18.7705C1.64336 19.8294 1.81418 20.7885 2.4893 21.5855L4.01534 20.2927C3.79177 20.0288 3.64836 19.6467 3.66836 18.8189C3.68904 17.963 3.87551 16.8297 4.15079 15.178L2.178 14.8492ZM19.8492 15.178C20.1245 16.8297 20.311 17.963 20.3316 18.8189C20.3516 19.6467 20.2082 20.0288 19.9847 20.2927L21.5107 21.5855C22.1858 20.7885 22.3566 19.8294 22.3311 18.7705C22.3061 17.7396 22.0872 16.4406 21.822 14.8492L19.8492 15.178ZM14.9172 23C16.5306 23 17.8479 23.0024 18.8689 22.8575C19.9176 22.7086 20.8356 22.3825 21.5107 21.5855L19.9847 20.2927C19.7611 20.5567 19.4077 20.7609 18.5879 20.8773C17.7403 20.9976 16.5917 21 14.9172 21L14.9172 23ZM21.5435 13.178C21.4147 12.4052 21.3046 11.7339 21.1462 11.202C20.9799 10.6432 20.7288 10.1209 20.2449 9.71094L18.9521 11.237C19.0276 11.301 19.1228 11.4147 19.2294 11.7726C19.3439 12.1573 19.4334 12.6833 19.5707 13.5068L21.5435 13.178ZM16.6115 11C17.4463 11 17.9799 11.0018 18.3782 11.0515C18.7487 11.0978 18.8766 11.173 18.9521 11.237L20.2449 9.71094C19.7609 9.30096 19.2044 9.13917 18.626 9.06695C18.0752 8.99818 17.395 9 16.6115 9L16.6115 11Z" fill="black"/>
+            </svg>
+            
+            
+      </div>
+  </div>
 </div>
 
     

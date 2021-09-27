@@ -8,7 +8,7 @@ const proxy    = document.createElement("div");
 
 const numBoxes = parts.length;
 const boxWidth  = "auto";
-const boxHeight = 20;  
+const boxHeight = 40;  
 const imgWidth  = boxWidth  - 6;
 const imgHeight = boxHeight - 14;
 const viewWidth = innerWidth;
@@ -74,7 +74,7 @@ for (let i = 1; i <= numBoxes; i++) {
   
   const box = document.createElement("div");
   box.className = "box";
-  // box.style.backgroundColor = "red";
+  box.style.backgroundColor = "#ffffff24";
 
 
   switch(i) {
@@ -87,16 +87,16 @@ for (let i = 1; i <= numBoxes; i++) {
       input.value = 1;
       break;
     case 3:
-      num.innerText = "Change";
-      input.value = 2;
+      num.innerText = "Drums";
+      input.value = 4;
       break;
     case 4:
-      num.innerText = "Drop";
+      num.innerText = "Hat";
       input.value = 1;
       break;
     case 5:
-      num.innerText = "Build 2";
-      input.value = 1;
+      num.innerText = "Hat";
+      input.value = 4;
       break;
     case 6:
       num.innerText = "Break 2";
@@ -221,54 +221,118 @@ function resize() {
   animation.render(animation.time(), false, true);
 }
 
-
-
+//SELECTORS
 
 let blobapath = document.querySelector(".blobAPath");
 let blobBPath = document.querySelector(".blobBPath");
 let blobB= document.querySelector(".blobb");
-
-var tlStageBlock = gsap.timeline({delay:1});
-
-tlStageBlock.to("#stageBlock", {duration:0.45, height:"0vw", autoAlpha:1, delay:0.5, ease: "Power1.easeOut"},0)
-tlStageBlock.to("#stageBlock2", {duration:0.45, height:"0vw", autoAlpha:1, delay:0.55, ease: "Power1.easeOut"},0)
-tlStageBlock.to("#stageBlock3", {duration:0.45, height:"0vw", autoAlpha:1, delay:0.6, ease: "Power1.easeOut"},0)
-tlStageBlock.to("#stageBlock4", {duration:0.45, height:"0vw", autoAlpha:1, delay:0.65, ease: "Power1.easeOut"},0)
-tlStageBlock.to("#stageBlock5", {duration:0.45, height:"0vw", autoAlpha:1, delay:0.7, ease: "Power1.easeOut"},0)
-tlStageBlock.to("#stageBlock6", {duration:0.45, height:"0vw", autoAlpha:1, delay:0.75, ease: "Power1.easeOut"},0)
-gsap.to(".bloba", {duration:800,  x:"+=10vw", rotate:-20, scale: 1, ease: "Power3.easeInOut", yoyo:true, repeat:-1},0); 
-// tlStageBlock.from("#mc_embed_signup", {duration:0.8, autoAlpha:0, y:"+=20vw", ease: "Power3.easeOut"},0.5); 
-
-gsap.set("#bg_circle2", {x:"80vw", y:"10vh"})
-gsap.set("#bg_circle", {top:"40vh",left:"15vh"})
-// gsap.set("#bg_circle", {x:"110vw"})
-
-var tl = gsap.timeline();
-tl.to("#bg_circle", {duration: 500,scale:3, x:"100vw", y:"100vh", delay:1, yoyo:true, repeat:-1},0);
-tl.to("#bg_circle2", {duration: 500, scale:3, x:-300, y:-300, yoyo:true, repeat:-1},0);
-
-function help(){
-  
-  gsap.to(".box", {duration:0.5,autoAlpha:0})
-  // tlStageBlock.reverse();
-
-
-}
-
-// document.getElementById("info").addEventListener("mouseover", help);
-
-
-
 let currentScroll = 0;
 let isScrollingDown = true;
-
 let tween = gsap.to(".marquee__part", {xPercent: -100, repeat: -1, duration: 10, ease: "linear"}).totalProgress(0.5);
+var hotSpot = document.getElementById("flipMe");
+let testBool = true;
+let nudge = true;
 
+//SET TWEENS
+
+gsap.set("#bg_circle2", {x:"+=20vw", y:"30vh", scale:2})
+gsap.set("#bg_circle", {top:200,left:"20vw"})
+gsap.set(".boxes", {y:-20});
+gsap.set("#vivaLogo, #header, #presets, #boxes_cont, #master_controls, .marquee, #footer", {autoAlpha:0});
+gsap.set("#close", {autoAlpha:0});
+gsap.set("#flipMe", {autoAlpha:0});
+gsap.set("#content", {perspective:800});
+gsap.set("#wrapper_cont", {transformStyle:"preserve-3d"});
+gsap.set("#wrapper_back", {rotationY:-180});
+gsap.set(["#wrapper", "#wrapper_back"], {backfaceVisibility:"hidden"});
+gsap.set(".boxes", {y:-20});
 gsap.set(".marquee__inner", {xPercent: -50});
 
+//TIMELINES
+
+var tlStageBlock = gsap.timeline({delay:1});
+tlStageBlock.to("#stageBlock", {duration:0.45, autoAlpha:0, delay:0.5, ease: "Power1.easeOut"},0);
+tlStageBlock.from("#wrapper", {duration:2, y:0, ease: "Power1.easeOut"});
+tlStageBlock.to(".bloba", {duration:10,  x:"+=10vw", rotate:-20, scale: 1, ease: "Power3.easeInOut", yoyo:true, repeat:-1},0); 
+
+var tl = gsap.timeline();
+tl.to("#bg_circle", {duration: 4, x:"-=5vw", y:"0vh", delay:1, yoyo:true, repeat:-1},0);
+tl.to("#bg_circle2", {duration: 50, x:-10, yoyo:true, rotate:60, repeat:-1},0);
+
+var tlPlayerMove = gsap.timeline();
+tlPlayerMove.from("#click_icon", {duration:3, autoAlpha:1, y:"-=10px",ease: "Power1.easeInOut", /* rotate:randomNum, */ yoyo:true, repeat:-1},0);
+
+function help(){ gsap.to(".box", {duration:0.5,autoAlpha:0})}
+
+var tlFlipCard = gsap.timeline({paused: true});
+tlFlipCard.to("#wrapper_cont", {duration:0.5, rotationY:"+=180",ease:"Back.easeInOut"},0);
+
+function mouseClickPlayer(){
+  tlPlayerMove.kill();
+  var tlExpand = gsap.timeline();
+  tlExpand.timeScale( 2 ); 
+  tlExpand.to("#click_icon", {duration:0.25, y:"+=140", autoAlpha:0},0);
+  tlExpand.to("#wrapper", {duration:1, height:"90vh", ease:"Power1.easeOut"},0)
+  tlExpand.to("#wrapper", {duration:3, width:"90vw", ease:"Power1.easeOut"},0.25)
+  tlExpand.to("#vivaLogo, #header, #presets, #boxes_cont, #master_controls, .marquee, #footer", {duration:0.75, stagger:0.2, autoAlpha:1, ease:"Power4.easeInOut"},0.15);
+  if(nudge == true){tlExpand.to("#wrapper_cont", {duration:1, ease:"Back.easeOut", rotationY:10},.75);
+  tlExpand.to("#wrapper_cont", {duration:1, ease:"Back.easeOut", rotationY:-10},1.25);
+  tlExpand.to("#wrapper_cont", {duration:1, ease:"Back.easeOut", rotationY:"+=10"},1.75);
+  }
+  tlExpand.to("#flipMe", {duration:1, autoAlpha:1},2);
+  nudge = !testBool;
+}
+
+function mouseClickOffPlayer(){
+  gsap.set("#close", {autoAlpha:0});
+  gsap.to("#wrapper", {duration:0.2, width:336, height:280})
+}
+
+function toggle() {
+  if (testBool == true) {
+    tlFlipCard.play();
+
+  } else {
+    tlFlipCard.reverse();
+  }
+    testBool = !testBool;
+}
+
+//ANIMATIONS
+
+const startAnim = gsap.to("#circle", {rotation: "+=360", ease: "power1.in", duration: 0.5, onComplete: () => loopAnim.play()});
+const loopAnim = gsap.to("#circle", {
+  rotation: "+=360", 
+  ease: "none", 
+  duration: 300, 
+  onComplete: () => {
+    if(ready) {
+      stopAnim.play();
+    } else {
+      loopAnim.play(0);
+    }
+  },
+  paused: true
+});
+
+let ready = false;
+const endRot = 180;
+
+const stopAnim = gsap.to(".spinner", {
+  rotation: `+=${360 + endRot}`,
+  duration: 0.6,
+  paused: true
+});
+
+//INTERACTIONS
+
+document.getElementById("wrapper").addEventListener("click", mouseClickPlayer);
+
+////////////////////////
+
 window.addEventListener("scroll", function(){
-  
-  if ( window.pageYOffset > currentScroll ) {
+
+if ( window.pageYOffset > currentScroll ) {
     isScrollingDown = true;
   } else {
     isScrollingDown = false;
@@ -277,66 +341,11 @@ window.addEventListener("scroll", function(){
   gsap.to(tween, {
     timeScale: isScrollingDown ? 1 : -1
   });
-  
   currentScroll = window.pageYOffset
 });
 
-
-
-gsap.set("#header, #presets, #boxes_cont, #master_controls, .marquee, #footer", {autoAlpha:0});
-gsap.set("#close", {autoAlpha:0});
-
-// document.getElementById("close").addEventListener("click", mouseClickOffPlayer);
-
-// document.getElementById("close").addEventListener("mouseoff", mouseOffPlayer);
-
-
-var playerTabExpand = gsap.timeline({delay:1});
-
-// gsap.from("#wrapper", {duration:1.8, autoAlpha:1, y:"+=15px", ease:"PowerEase1.InOut", /* rotate:randomNum, */ yoyo:true, repeat:-1});
-// gsap.from("#click_icon", {duration:1.8, autoAlpha:1, y:"-=7px", ease:"bounceEase.InOut", /* rotate:randomNum, */ yoyo:true, repeat:-1});
-
-
-
-document.getElementById("wrapper").addEventListener("click", mouseClickPlayer);
-// document.getElementById("close").addEventListener("click", mouseClickOffPlayer);
-
-function mouseClickPlayer(){
-  // gsap.set("#close", {autoAlpha:1});
-  // gsap.set("#content_bg_2", {display:"block"});
-  // gsap.set("#content_bg", {display:"none"});
-  // gsap.set("#preset", {display:"block"});
-  //   gsap.to(".wrapper", {duration:0.5, autoAlpha:1, delay:0.2, pointerEvents:"auto"});
-    gsap.to("#wrapper", {duration:0.2, height:"90vh", width:"90vw", top:0})
-    gsap.to("#wrapper_bg", {duration:0.2, autoAlpha:0})    
-    gsap.set("#header, #presets, #boxes_cont, #master_controls, .marquee, #footer", {autoAlpha:1});
-    // gsap.set("#close", {autoAlpha:1});
-    // gsap.set("#download", {autoAlpha:1});
-    // gsap.set("#totalDuration", {autoAlpha:1});
-    // gsap.set("#play-toggle", {autoAlpha:0.8});
-    // gsap.set("#nft_name", {duration:0.5, autoAlpha:0});
-    // gsap.to("#edit_trax_logo", {duration:0.2, top:-36, right:-72, scale:0.2});   
-    gsap.set("#click_icon", {display:"none"});
-  }
   
-  function mouseOverPlayer(){}
-  function mouseOffPlayer(){}
-  
-  function mouseClickOffPlayer(){
-    gsap.set("#close", {autoAlpha:0});
-        // gsap.set("#preset", {display:"block"});
-      // gsap.set("#content_bg_2", {display:"none"});
-  // gsap.set("#content_bg", {display:"block"});
-    // gsap.set("#download", {autoAlpha:0});
-    gsap.set("#header, #presets, #boxes_cont, #master_controls, .marquee, #footer", {autoAlpha:0});
-    gsap.to("#wrapper", {duration:0.2, width:336, height:280})
-    // gsap.set("#close", {autoAlpha:0});
-    // gsap.set("#totalDuration", {autoAlpha:0});
-    // gsap.set("#play-toggle", {autoAlpha:0});
-    // gsap.set("#content_bg", {pointerEvents: "auto"});
-    // gsap.to("#nft_name", {duration:0.5, autoAlpha:1});
-    // gsap.set(".wrapper", {autoAlpha:0, pointerEvents:"none"});
-    // gsap.to("#edit_trax_logo", {duration:0.2, scale:1,top:79, right:44});
-    // gsap.set("#copy_img", {autoAlpha:1});
-    // gsap.set("#click_icon", {autoAlpha:1});
-  }
+
+
+
+
