@@ -72,8 +72,8 @@ function updateParts() {
 
 function loadPreset(index) {
     const preset = presets[index];
-    for (var i = 0; i < preset.length ; i++) {
-        parts[i].loop = preset[i];
+    for (var i = 0; i < parts.length ; i++) {
+        parts[i].loop = preset[i] ?? 0;
     }
     presetLoaded();
 }
